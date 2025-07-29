@@ -1,0 +1,306 @@
+php* {
+  box-sizing: border-box;
+}
+:root {
+  --tongue: #c12115;
+  --pupil: #fff;
+  --icing: #f2f2f2;
+  --stroke: #1a1a1a;
+}
+body {
+  --frosting: hsl(var(--frosting-hue, 0), 100%, 55%);
+  --lightness: 50;
+  --flame: 0;
+  --glow-hue: 40;
+  --glow-saturation: 50;
+  --glow-lightness: 35;
+  --glow-alpha: 0.4;
+  --transparency-alpha: 0;
+  --glow: hsla(var(--glow-hue), calc(var(--glow-saturation) * 1%), calc(var(--glow-lightness) * 1%), var(--glow-alpha));
+  --transparent: hsla(0, 0%, 0%, var(--transparency-alpha));
+  display: flex;
+  overflow: hidden;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background: hsl(180, 30%, calc(var(--lightness, 50) * 1%));
+}
+.whitespace {
+  width: 7px;
+}
+.birthday-button {
+  position: relative;
+  transform: scale(0.6);
+  cursor: pointer;
+}
+.birthday-button__text {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  font-family: sans-serif;
+  font-weight: bold;
+}
+.birthday-button__text .char {
+  display: inline-block;
+  color: hsl(var(--hue, 0), calc(var(--char-sat, 0) * 1%), calc(var(--char-light, 0) * 1%));
+}
+.birthday-button:before {
+  content: '';
+  position: absolute;
+  height: 240px;
+  width: 240px;
+  background: radial-gradient(var(--glow), var(--transparent) 30%), radial-gradient(var(--glow), var(--transparent) 50%);
+  border-radius: 50%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -70%) scale(calc(var(--flame) * 3));
+  z-index: 2;
+  filter: blur(15px);
+  opacity: var(--flame);
+}
+.birthday-button:after {
+  content: '';
+  height: 30px;
+  width: 400px;
+  filter: blur(15px);
+  position: absolute;
+  background: radial-gradient(var(--glow), var(--transparent) 20%), radial-gradient(var(--glow), var(--transparent));
+  top: 100%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(calc(var(--flame) * 1));
+  opacity: var(--flame);
+}
+.birthday-button__button {
+  width: 240px;
+  height: 100px;
+  position: relative;
+  border: 0;
+  background: var(--icing);
+  border-radius: 14px;
+  cursor: pointer;
+}
+.birthday-button__cake {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translate(-50%, 0);
+  width: 289.5px;
+  display: none;
+}
+.cake__eye-body {
+  fill: var(--stroke);
+}
+.cake__eye-pupil {
+  fill: var(--pupil);
+}
+.cake__tongue {
+  fill: var(--tongue);
+}
+.cake__mouth-opening {
+  fill: var(--stroke);
+  stroke: var(--stroke);
+}
+.cake__sprinkle {
+  --sprinkle: hsl(var(--sprinkle-hue, 0), 100%, 75%);
+  fill: var(--sprinkle);
+}
+.cake__frosting--start {
+  fill: var(--frosting);
+}
+.cake__frosting--duplicate {
+  fill: var(--frosting);
+}
+.candle__flame {
+  opacity: var(--flame, 0);
+}
+.candle__flame-outer {
+  fill: #ff711f;
+}
+.candle__flame-inner {
+  fill: #edca1d;
+}
+.face__stroke {
+  stroke: var(--stroke);
+}
+.cake__candle:nth-of-type(1) {
+  --flame: 0;
+}
+.cake__candle:nth-of-type(2) {
+  --flame: 0;
+}
+.cake__candle:nth-of-type(3) {
+  --flame: 0;
+}
+label {
+  height: 44px;
+  width: 44px;
+  position: fixed;
+  bottom: 1rem;
+  right: 1rem;
+  cursor: pointer;
+}
+label > svg {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+}
+label path {
+  fill: #476b6b;
+}
+label svg:nth-of-type(1) {
+  display: none;
+}
+[type='checkbox'] {
+  height: 0;
+  width: 0;
+  position: absolute;
+  top: 0;
+  left: 100%;
+}
+:checked ~ label svg:nth-of-type(1) {
+  display: block;
+}
+:checked ~ label svg:nth-of-type(2) {
+  display: none;
+}
+
+/* Present Box Styles */
+.present-box {
+  width: 360px;
+  height: 280px;
+  margin: 2rem auto;
+  position: relative;
+  cursor: pointer;
+  perspective: 1000px;
+  border-radius: 30px;
+  background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 100%);
+  box-shadow: 0 10px 25px rgba(255, 105, 180, 0.6);
+  transition: box-shadow 0.3s ease;
+}
+.present-box:hover {
+  box-shadow: 0 15px 35px rgba(255, 105, 180, 0.9);
+}
+
+.present-box__closed {
+  width: 100%;
+  height: 100%;
+  background: #ff4d4d;
+  border-radius: 20px;
+  position: relative;
+  box-shadow: 0 8px 15px rgba(0,0,0,0.3);
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+}
+
+.ribbon {
+  position: absolute;
+  top: 40px;
+  left: 50%;
+  width: 200px;
+  height: 40px;
+  background: #fff;
+  border-radius: 10px;
+  transform: translateX(-50%);
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+.box {
+  position: absolute;
+  top: 80px;
+  left: 50%;
+  width: 220px;
+  height: 80px;
+  background: #ff1a1a;
+  border-radius: 15px;
+  transform: translateX(-50%);
+  box-shadow: inset 0 4px 10px rgba(255,255,255,0.3);
+}
+
+.present-box.open .present-box__closed {
+  transform: rotateX(180deg);
+}
+
+.letter-content {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 280px;
+  height: 180px;
+  background: #fff;
+  border-radius: 20px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+  padding: 1rem 1.5rem;
+  box-sizing: border-box;
+  transform: translateX(-50%) scaleY(0);
+  transform-origin: top;
+  transition: transform 0.5s ease;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  overflow: hidden;
+  pointer-events: none;
+  opacity: 0;
+  z-index: 10;
+}
+
+.present-box.open .letter-content {
+  transform: translateX(-50%) scaleY(1);
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.photo {
+  width: 80px;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  position: relative;
+  animation-duration: 4s;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in-out;
+}
+
+.photo-left {
+  float: left;
+  animation-name: floatLeft;
+}
+
+.photo-right {
+  float: right;
+  animation-name: floatRight;
+}
+
+.letter-text {
+  flex: 1;
+  margin: 0 1rem;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #333;
+}
+
+@keyframes floatLeft {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-15px);
+  }
+}
+
+@keyframes floatRight {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-15px);
+  }
+}
